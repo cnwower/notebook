@@ -6,7 +6,7 @@ var outer = {
     "case0": {
         "case0_0": {
             "title": "说明",
-            "content": "1. 支持笔记本的新建、双击改名及删除；\n2. 支持笔记的新建、内容保存/修改及Delete键删除；\n3. 内容保存时检测是否存在笔记本或笔记；\n4. 单击右下‘保存’图标或切换笔记可保存当前笔记内容；\n5. 单击内容右下‘箭头’图标展开Markdown语法解析窗口。"
+            "content": "1. 支持笔记本的新建、双击改名及删除；\n2. 支持笔记的新建、内容保存/修改及删除（按Delete键或清空内容及标题后切换笔记）；\n3. 内容保存时检测是否存在笔记本或笔记；\n4. 单击右下‘保存’图标或切换笔记可保存当前笔记内容；\n5. 单击内容右下‘箭头’图标展开Markdown语法解析窗口。"
         },
         "case0_1": {
             "title": "Markdown语法解析",
@@ -27,11 +27,12 @@ $(function () {
     var caseName = $('.case.selected').attr('class').split(' ')[0];
     var item0 = $('#center_body').find('.case0').find('.item:eq(0)').attr('class').split(' ')[0];
     var item1 = $('#center_body').find('.case0').find('.item:eq(1)').attr('class').split(' ')[0];
-
+    
     var getCase = JSON.parse(sessionStorage.getItem('outer'))[caseName];
 
     var item0Content = getCase[item0];
     var item1Content = getCase[item1];
+    
 
     $('#title').val(item0Content.title);
     $('#content').val(item0Content.content);
