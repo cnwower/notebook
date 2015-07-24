@@ -1,0 +1,271 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-size: 12px;
+    position: relative;
+}
+
+#outer {
+    float: left;
+    width: 860px;
+    margin: 10px 0 0 50px;
+    overflow: hidden;
+    border: 2px solid red;
+}
+
+#left,
+#center,
+#right {
+    float: left;
+}
+
+#left {
+    width: 140px;
+    height: 626px;
+    background-color: #212121;
+    color: #747373;
+    position: relative;
+}
+
+#left h1 {
+    height: 170px;
+    line-height: 170px;
+    text-align: center;
+}
+
+#left ul {
+    list-style-type: none;
+}
+
+#left .case {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+}
+
+#left .case:hover {
+    background-color: #afaaaa;
+    color: #fff;
+    cursor: pointer;
+}
+
+#left .case.selected {
+    color: #fff;
+    background-color: #585757;
+}
+
+#left .out {
+    position: relative;
+}
+
+#left .delete {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: none;
+    background: url(img/delete1.png) no-repeat center;
+    z-index: 999;
+}
+
+#left #add {
+    color: #eaeaea;
+    font-size: 30px;
+    width: 25px;
+    height: 25px;
+    margin: 30px auto;
+    line-height: 25px;
+    text-align: center;
+    border: 1px solid #eaeaea;
+    border-radius: 13px;
+}
+
+#left #add:hover {
+    cursor: pointer;
+}
+
+#left #midden {
+    width: 39px;
+    height: 39px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: url(img/midden0.png);
+}
+
+#left #midden:hover {
+    cursor: pointer;
+}
+
+#center {
+    width: 290px;
+    height: 626px;
+    border-left: 10px solid #dedede;
+    border-right: 10px solid #dedede;
+}
+
+#center #center_head {
+    overflow: hidden;
+    position: relative;
+}
+
+#center #center_head h1 {
+    float: left;
+    color: #b9b9b9;
+    height: 170px;
+    line-height: 170px;
+    padding-left: 20px;
+}
+
+#addNewItem {
+    float: right;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+    margin-top: 70px;
+    margin-right: 20px;
+    background-color: #eb0d0d;
+    border-radius: 3px;
+}
+
+#addNewItem:hover {
+    cursor: pointer;
+}
+
+#center #center_body {
+    height: 450px;
+    overflow-y: auto;
+}
+
+#center #center_body p:hover {
+    cursor: pointer;
+}
+
+#center .item {
+    color: #4e4e4e;
+    padding: 5px;
+    border: 1px solid #fff;
+    letter-spacing: 1px;
+    background-color: #eaeaea;
+    margin: 10px;
+    margin-top: 0;
+}
+
+#center .item:hover {
+    cursor: pointer;
+}
+
+#center .item.selected {
+    background-color: #fff;
+    border: 1px solid #49d9f4;
+}
+
+#center .item p {
+    height: 9em;
+    line-height: 1em;
+    overflow: hidden;
+    width: 20em;
+    /*不允许出现半汉字截断*/
+}
+
+#right {
+    width: 410px;
+    position: relative;
+}
+
+#right_head {
+    padding: 0 25px;
+    height: 170px;
+    line-height: 170px;
+    color: #fff;
+    background-color: #eb0d0d;
+}
+
+#right #title {
+    border: none;
+    width: 15em;
+    font-size: 2em;
+    margin: 0.67em 0;
+    background-color: #eb0d0d;
+    color: #fff;
+}
+
+#right #title:focus {
+    background-color: #fff;
+    color: #000;
+}
+
+#right #content {
+    outline: none;
+    resize: none;
+    width: 28em;
+    height: 440px;
+    color: #4e4e4e;
+    border: none;
+    padding: 6px 8px;
+}
+
+#right #keep {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background: url(img/keep.png) no-repeat center center;
+    padding: 0;
+    right: 3px;
+    bottom: 5px;
+}
+
+#right #keep:hover {
+    cursor: pointer;
+}
+
+#stretch {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background: url(img/stretch.jpg) no-repeat center center;
+    padding: 0;
+    right: 3px;
+    bottom: 40px;
+}
+
+#stretch:hover {
+    cursor: pointer;
+}
+
+#markdown {
+    float: right;
+    width: 380px;
+    padding: 0 10px 10px 10px;
+    height: 596px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: 10px solid #eef1f2;
+    background-color: #fff;
+    display: none;
+}
+
+#m_title {
+    width: 100%;
+    height: 39px;
+    line-height: 39px;
+    font-size: 2em;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+#m_content {
+    width: 100%;
+    height: 545px;
+    color: #4e4e4e;
+    overflow-y: auto;
+    list-style-position: inside;
+    /*因为ol的margin和padding被最开始那设置为0，因此数字会跑出边框，加list-style-position: inside;解决这个问题*/
+}
