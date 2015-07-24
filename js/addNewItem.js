@@ -22,8 +22,10 @@ $(function () {
                     sessionStorage.setItem('outer', JSON.stringify(outer));
                 } else {
                     $('#center_body').find('.selected:eq(0)').find('h5').text(currentTitle).end().find('p').text(currentContent);
-                    $oTemp[$selectedItemClass].title = currentTitle;
-                    $oTemp[$selectedItemClass].content = currentContent;
+                    $oTemp[$selectedItemClass] = {
+                        "title": currentTitle,
+                        "content": currentContent
+                    };
                     sessionStorage.setItem('outer', JSON.stringify(outer));
                 }
             }
