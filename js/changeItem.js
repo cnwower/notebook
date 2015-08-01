@@ -14,45 +14,58 @@ $(function () {
             //保存现在item的内容,如果内容为空，则删除
             var currentItemClass = $selectedItem.attr('class').split(' ')[0];
             var currentTitle = $('#title').val();
-            var currentContent = $('#content').val();
-
-            if (currentTitle == '' && currentContent == '') {
+            var currentContent = $('#content').html();
+            var imgLength = $('#content img').length;
+            if (imgLength == 0 && currentTitle == '' && currentContent == '') { /*标题和内容都为空，并且里面也没有img*/
                 $selectedItem.hide(200, function () {
                     $(this).remove();
                 });
                 //把对象的这个属性删除后重新放入sessionStorage
                 delete $temp[currentItemClass];
                 sessionStorage.setItem('outer', JSON.stringify(outer));
-            } else {
-                $('#center_body').find('.selected:eq(0)').find('h5').text(currentTitle).end().find('p').text(currentContent);
+            } else if (imgLength == 0 && currentTitle != '' && currentContent != '') {
+                /*如果当前不是一个canvas,并且有内容*/
+                $('#center_body').find('.selected:eq(0)').find('h5').text(currentTitle).end().find('p').html(currentContent);
                 $temp[currentItemClass] = {
                     "title": currentTitle,
                     "content": currentContent
                 };
                 sessionStorage.setItem('outer', JSON.stringify(outer));
-            }
+            } else if (imgLength > 0) {
+                /*如果当前是一个canvas*/
+                $('#center_body').find('.selected:eq(0)').find('h5').text(currentTitle);
+                $temp[currentItemClass].title = currentTitle;
+                sessionStorage.setItem('outer', JSON.stringify(outer));
+            };
 
             /*切换到新的item*/
-
             var newItem = $(this).attr('class').split(' ')[0]; //找出第一个类名，方便定位内容
             var item = $temp[newItem];
 
-            /*追加selected类一定要放在最后*/
             $(this).siblings().removeClass('selected').end().addClass('selected');
             $('#title').val(item.title);
-            $('#content').val(item.content);
+
+            /*如果切换的是一个canvas*/
+            if (Object.getOwnPropertyNames(item).length == 3) {
+                $('#content').html('');
+                var oImg = $('<img src="" alt="">');
+                oImg.attr('src', item.bigImg).appendTo($('#content'));
+            } else {
+                $('#content').html(item.content);
+            }
+
             /*在Markdown框出现的情况下切换item*/
-            if ($('#markdown').is(':visible')) {
+            if ($('#markdown').is(':visible') && Object.getOwnPropertyNames(item).length == 2) {
                 $('#m_title').html(markdown.toHTML($('#title').val()));
-                $('#m_content').html(markdown.toHTML($('#content').val()));
+                $('#m_content').html(markdown.toHTML($('#content').html()));
 
                 $('#title').keyup(function () {
                     $('#m_title').html(markdown.toHTML($('#title').val()));
                 })
 
                 $('#content').keyup(function () {
-                    console.log(markdown.toHTML($('#content').val()));
-                    $('#m_content').html(markdown.toHTML($('#content').val()));
+                    console.log(markdown.toHTML($('#content').html()));
+                    $('#m_content').html(markdown.toHTML($('#content').html()));
                 })
             }
 

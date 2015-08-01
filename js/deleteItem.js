@@ -1,7 +1,7 @@
 $(function () {
     $(document).keydown(function (e) {
         e = e || Event;
-        if (e.keyCode == 46) {
+        if (e.keyCode == 46 && $('.item').length >0) {
             var $selectedCase = $('.case.selected').attr('class').split(' ')[0];
             var $selectedItem = $('#center_body').find('.' + $selectedCase).find('.selected').eq(0);
             var currentItemClass = $selectedItem.attr('class').split(' ')[0];
@@ -28,10 +28,10 @@ $(function () {
                 var $nearItemClass = $nearItem.attr('class').split(' ')[0];
                 var Content = $temp[$nearItemClass];
                 $('#title').val(Content.title);
-                $('#content').val(Content.content);
+                $('#content').html(Content.content);
             } else {
                 $('#title').val('');
-                $('#content').val('');
+                $('#content').html('');
             }
        
             

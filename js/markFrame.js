@@ -4,7 +4,7 @@ $(function () {
             $('#markdown').show();
             $('#stretch').css('background', 'url(img/shrink.jpg) no-repeat center center');
             $('#m_title').html(markdown.toHTML($('#title').val()));
-            $('#m_content').html(markdown.toHTML($('#content').val()));
+            $('#m_content').html(markdown.toHTML($('#content').html()));
 
 
             $('#title').keyup(function () {
@@ -12,7 +12,7 @@ $(function () {
             })
 
             $('#content').keyup(function () {
-                $('#m_content').html(markdown.toHTML($('#content').val()));
+                $('#m_content').html(markdown.toHTML($('#content').html()));
             })
         } else {
             $('#markdown').hide();

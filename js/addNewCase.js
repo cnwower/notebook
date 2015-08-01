@@ -2,7 +2,6 @@ $(function () {
     $('#add').click(function () {
         var newCaseClass = 'case' + window['caseLength'];
 
-
         var $oDiv = $('<li class="' + newCaseClass + ' case"></li>');
 
         var $out = $('<div class="out"></div>');
@@ -32,21 +31,21 @@ $(function () {
                     $('.case').removeClass('selected');
                 }
 
-                $oDiv.addClass('selected');
+               $oDiv.addClass('selected');
                 var $outerCase = $('<div class="' + newCaseClass + '"></div>');
                 $outerCase.appendTo($('#center_body'));
 
-                if (!window[newCaseClass]) {
+           /*     if (!window[newCaseClass]) {
                     window[newCaseClass] = 0;
                 }
                 var $innderCase = $('<div class="' + window[newCaseClass] + ' ' + 'item selected' + '">' + '</div>');
                 $('<h5></h5>').appendTo($innderCase);
                 $('<p></p>').appendTo($innderCase);
                 $innderCase.prependTo($($outerCase));
-                window[newCaseClass] ++;
+                window[newCaseClass] ++;*/
 
                 $('#title').val('');
-                $('#content').val('');
+                $('#content').html('');
                 /*解决‘删除’图标出现时新建一个case，导致新case没有该图标而其他case该图标显示的bug*/
                 $('.delete').hide();
             }
@@ -66,21 +65,22 @@ $(function () {
                     if ($oldSelectedCase) {
                         $('#center_body').find('.' + $oldSelectedCase).remove();
                     };
+                    
                     $oDiv.addClass('selected').siblings().removeClass('selected');
                     var $outerCase = $('<div class="' + newCaseClass + '"></div>');
                     $outerCase.appendTo($('#center_body'));
 
-                    if (!window[newCaseClass]) {
+                   /* if (!window[newCaseClass]) {
                         window[newCaseClass] = 0;
                     }
                     var $innderCase = $('<div class="' + window[newCaseClass] + ' ' + 'item selected' + '">' + '</div>');
                     $('<h5></h5>').appendTo($innderCase);
                     $('<p></p>').appendTo($innderCase);
                     $innderCase.prependTo($($outerCase));
-                    window[newCaseClass] ++;
+                    window[newCaseClass] ++;*/
 
                     $('#title').val('');
-                    $('#content').val('');
+                    $('#content').html('');
                     /*解决‘删除’图标出现时新建一个case，导致新case没有该图标而其他case该图标显示的bug*/
                     $('.delete').hide();
                 }

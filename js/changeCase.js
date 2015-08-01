@@ -13,6 +13,7 @@ $(function () {
             var $outerCase = $('<div class="' + newCaseName + '"></div>');
             $outerCase.appendTo('#center_body');
 
+            var flag = 1; //用来对一个item做特殊处理
             for (var i in newItems) {
                 var $innerCase = $('<div class="' + i + ' item"></div');
                 $innerCase.appendTo($outerCase);
@@ -21,20 +22,34 @@ $(function () {
             }
 
             $outerCase.find('.item:first-child').addClass('selected');
-            $('#title').val($('.item.selected').find('h5').text());
-            $('#content').val($('.item.selected').find('p').text());
+            var itemName = $('.item.selected').attr('class').split(' ')[0];
+
+          
+            $('#title').val(newItems[itemName].title);
+            $('#content').html(''); //先清空
+            if (Object.getOwnPropertyNames(newItems[itemName]).length == 2) {
+                //如果不是canvas
+              
+                 $('#content').html(newItems[itemName].content);
+            } else if (Object.getOwnPropertyNames(newItems[itemName]).length == 3) {
+                //如果是canvas
+                var oImg = $('<img src="" alt="">');
+                oImg.attr('src', newItems[itemName].bigImg).appendTo($('#content'));
+            }
+
+
             /*在Markdown框显示的情况下切换case*/
             if ($('#markdown').is(':visible')) {
                 $('#m_title').html(markdown.toHTML($('#title').val()));
-                $('#m_content').html(markdown.toHTML($('#content').val()));
+                $('#m_content').html(markdown.toHTML($('#content').html()));
 
                 $('#title').keyup(function () {
                     $('#m_title').html(markdown.toHTML($('#title').val()));
                 })
 
                 $('#content').keyup(function () {
-                    console.log(markdown.toHTML($('#content').val()));
-                    $('#m_content').html(markdown.toHTML($('#content').val()));
+                    console.log(markdown.toHTML($('#content').html()));
+                    $('#m_content').html(markdown.toHTML($('#content').html()));
                 })
             }
         }

@@ -39,12 +39,12 @@ $(function () {
                 }
                 $outerCase.find('.item:first-child').addClass('selected');
                 $('#title').val($('.item.selected').find('h5').text());
-                $('#content').val($('.item.selected').find('p').text());
+                $('#content').html($('.item.selected').find('p').html());
 
             } else {
                 $('#center_body').find('div').remove();
                 $('#title').val('');
-                $('#content').val('');
+                $('#content').html('');
             }
 
         }
