@@ -211,7 +211,7 @@ body {
 #right #content {
     outline: none;
     /* resize: none;*/
-    
+    white-space: pre-wrap;
     width: 31em;
     height: 440px;
     color: #4e4e4e;
